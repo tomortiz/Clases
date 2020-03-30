@@ -1,10 +1,9 @@
-##########################################
-## Class 03: Data Management & Visualization
+###Class 03 - Data Management & Visualization###
 ## Author: Esteban Lopez
 ## Course: Spatial Analytics 
 ## Program: Master in Business Analytics
 ## Institution: Universidad Adolfo Ibáñez
-##########################################
+
 
 #---- Part 1: Data Management  -------------------
 
@@ -28,6 +27,7 @@ write.dta
 
 casosRM<-fread("Class_03/CasosCovid_RM.csv",header = T, showProgress = T,data.table = T)
 
+casosRM[,table(Sexo)]
 casosRM[Sexo=="Fememino",Sexo:="Femenino"]
 
 
@@ -87,15 +87,15 @@ p1
 library(plotly)
 ggplotly(p1)
 
-# Bar Plot
+# other useful ways to show data
 
-ggplot(casosRM[order(Edad,decreasing = T),])+geom_bar(stat = 'identity',aes(x=`Centro de salud` ,y=Edad/Edad,fill=Edad)) + coord_flip()+ facet_wrap(~Sexo) +labs(title = "Casos Confirmados por Sexo y Establecimiento",subtitle = "Región Metropolitana - 2020-03-17",caption = "Fuente: https://www.minsal.cl/nuevo-coronavirus-2019-ncov/casos-confirmados-en-chile-covid-19/")
+#high charter
+# http://jkunst.com/highcharter/index.html
+
 
 #---- Part 3: Intro to Mapping  -------------------
 #install.packages("chilemapas")
-
 library(chilemapas)
-library(maptools)
 library(data.table)
 library(ggplot2)
 
