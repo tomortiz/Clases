@@ -16,14 +16,20 @@
 
 x<-NULL
 y<-c(TRUE,FALSE)
+
 as.numeric(y)
 
+z<-c(TRUE,FALSE,NULL)
+as.numeric(z)
+
 A<-1
-years<-2010:2020
+years<-(2010:2020)
 year<- seq(2010,2020,by = 0.5)
 tiktoc<-c("Que", "linda", "te ves", "limpiando", "Esperancita")
 
-paste("Hola","Mundo",sep=" ")
+paste("Hola","Mundo",sep="-")
+paste("Hola","Mundo", sep=" ")
+paste("Hola","Mundo")
 
 paste(tiktoc,collapse = " ")
 
@@ -31,8 +37,17 @@ obj2<- as.numeric(c(1,2,3,4,"Esperancita"))
 is.na(obj2)
 
 
+
 numeros_en_texto<-c("1","2","3")
 as.numeric(numeros_en_texto)
+
+texto=c(cuarentena,"virus","casa")
+texto2=as.character(texto)
+rm(texto)
+rm(texto2)
+
+textos = c(cuarentena,"covid","auto",casa)
+texto3=as.character(textos)
 
 m1<-matrix(1:4,2,2)
 m1%*%t(m1)
@@ -48,7 +63,7 @@ d1<-data.frame(quakes)
 
 ls()
 
-l1<-list(Perrito=A,years,tiktoc,m1)
+l1<-list(Perrito=A,Gatitos=years,tiktoc,m1)
 A<-3L
 
 # Manipulación de Objetos
@@ -79,7 +94,7 @@ length(years)
 years[11]
 
 dim(m1)
-m1[1,2]
+m1[2,2]
 
 dim(a1)
 class(a1)
@@ -87,15 +102,21 @@ a1[2,1,3]
 
 l1[2]
 l1[2][[1]][1:2]
+l1[[2]][1:2]
 
 l1[[2]][3:5]
 
 l1$Perrito
+l1$Gatitos
+
 
 d1[1,]
+
 d1[,1]
 d1[,'lat']
-d1$mag[seq(1,16,2)]
+d1$lat
+
+d1$mag[seq(1,16,2)] #Muestra el valor de las casillas de la secuencia correspondientes a la columna mag
 d1$lat[1:4]
 
 d1[,'lat']
@@ -103,7 +124,9 @@ d1[1:4,c('lat','long')]
 
 d1$mag>5
 table(d1$mag>5)
+
 d1[d1$mag>6,'stations']
+d1[d1$mag>6,c('stations','lat')]
 
 d1$dummy_5up<-as.numeric(d1$mag>5)
 head(d1)
@@ -117,10 +140,8 @@ head(d1)
 
 A<-2
 
-if(A==1){
-  print("A es un objeto con un elemento numérico 1")
-} else {
-  print("A no es igual a 1, pero no se preocupe que lo hacemos")
+if(A==1){print("A es un objeto con un elemento numérico 1")
+} else {  print("A no es igual a 1, pero no se preocupe que lo hacemos")
   A<-1L
 }
 
@@ -182,10 +203,15 @@ quakes<-data.table(quakes)
 
 
 quakes[quakes$mag>6,'mag']
-
+quakes[mag>6,'mag']
+quakes[quakes$mag>6, .(mag)]
 quakes[mag>6,.(mag)]
 
-quakes[,mean(mag),by=.(stations)]
+quakes[,mag>6,'mag']
+
+quakes[,mean(mag),by=.(stations)]#Se le pide que encuentre el promedio de magnitudes por estación
+      #deberian haber 102 estaciones diferentes. Hay que encontrar un codigo para contar las estaciones diferentes.
+
 
 ### Reading data from a file
 
